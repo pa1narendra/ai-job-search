@@ -105,12 +105,15 @@ Write 5-7 lines that function as an "elevator pitch": a concise, compelling intr
 
 **Create 2-3 profile statement templates for your main role types:**
 
-<!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+<!-- Populated by /setup for Pavan Narendra Peela. Tailor specifics per posting. -->
+**For Full Stack Developer roles:**
+> Full Stack Developer with 2 years of experience building production web applications with React, Next.js, and Node.js. Built a real-time messaging system handling 1M+ messages at sub-500ms response times through Redis caching and pagination. Comfortable across the stack, from reusable TypeScript UI components to multi-tenant REST APIs and containerized AWS deployments.
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For Backend Engineer roles:**
+> Backend-leaning Software Engineer with 2 years building scalable Node.js services. Designed multi-tenant architecture with isolated databases and role-based access control for a healthcare platform serving 200+ users, and optimized high-volume MongoDB and Redis workloads to cut fetch times from 2-3s to under 500ms. Experienced with REST API design, WebSockets, and Docker-based deployments.
+
+**For Frontend Engineer roles:**
+> Frontend-focused Software Engineer with 2 years building responsive, reusable interfaces in React, Next.js, and TypeScript. Shipped production UI for a multi-tenant healthcare platform with end-to-end test coverage (Playwright) and a strong eye for performance and clean component patterns.
 
 ### Core Competencies / Skills Section (Best Practice)
 Reorder and emphasize based on the role. Use bold category labels.

@@ -16,9 +16,9 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:** JavaScript, TypeScript, React, Next.js, Node.js, REST APIs, WebSockets, MongoDB, Redis, multi-tenant architecture
+**Moderate match areas:** AWS (EC2/S3/Elastic Beanstalk), Docker, Helm, CI/CD, Keycloak/OAuth 2.0, Java, C++, Tailwind CSS
+**Weak match areas:** Kubernetes-native ops, large-scale distributed systems, Python/Go backends, data engineering/ML, mobile, GCP/Azure
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for?
@@ -30,9 +30,9 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:** Full-stack web development (React/Next/Node), multi-tenant SaaS, real-time systems, healthcare platforms, performance optimization at scale
+**Moderate:** DevOps/infrastructure (Docker, Helm, CI/CD), SSO/auth integration (Keycloak, OAuth)
+**Entry-level:** Tech lead / architecture ownership at large scale, ML/data engineering (2 years total experience — junior-to-mid level)
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -47,9 +47,10 @@ Does the role and company culture match the behavioral profile?
 **Red flags to research:** Department disorganization, work dominated by maintenance over development, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
 
 ### 4. Location & Logistics (Pass/Fail + Notes)
-- Within commute range: PASS
-- Remote with occasional office: PASS
-- Requires relocation: FAIL (deal-breaker)
+- Hyderabad (on-site/hybrid): PASS
+- Other major Indian metros (Bengaluru, Pune, Chennai, Delhi NCR, Mumbai): PASS (open to relocation for these)
+- Remote (India): PASS
+- Tier-2/3 city requiring relocation: FLAG (discuss with user)
 - Frequent international travel: FLAG (discuss with user)
 
 ### 5. Career Alignment & Motivation (0-100)
@@ -63,19 +64,21 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Move into big tech / large product companies to learn how applications are architected and operated at massive scale (1M+ users)
+- Deepen system design and scalability expertise — convert reactive, hard-won startup optimization experience into proactive large-scale design skill
+- Grow into a senior full-stack / backend engineer owning performance-critical, real-time systems
+
+**Strong career-alignment signal (score high):** Roles at companies that operate genuinely high-scale products, or that explicitly involve performance/scalability/distributed-systems work. This is Pavan's primary motivation for switching.
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
+- Tasks that energize: scaling/performance engineering, system design at scale, building new features end-to-end, real-time systems, modern JS/TS stacks
+- Tasks that drain: pure maintenance of legacy systems, 24x7 on-call/production support, non-JS legacy stacks (.NET/PHP-only)
 - Non-task factors: leadership style, department culture, company values, degree of autonomy
 
 **Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+- **Security**: Currently employed (IVECTORS); can be selective — only switch for a clearly better role. Salary target 9-15 LPA; flag anything below ~9 LPA.
+- **Flexibility**: Hyderabad-based; open to other major Indian metros and remote.
+- **Professional development**: Prioritizes learning high-scale system design, scalability, and ownership of meaningful product work.
 
 ### 6. Salary Benchmark (Optional)
 
@@ -129,7 +132,7 @@ Present the evaluation as:
 
 ### Company Research Checklist
 - [ ] Checked company website (mission, values, recent news)
-- [ ] Checked review sites (Glassdoor, Jobindex, etc.)
+- [ ] Checked review sites (AmbitionBox, Glassdoor, Naukri company reviews, etc.)
 - [ ] Checked LinkedIn for team size, recent hires, connections
 - [ ] Checked media for restructuring, growth, or workplace issues
 - [ ] Identified network contacts who may know the team/manager

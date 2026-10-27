@@ -5,7 +5,10 @@
       "Bash(python3:*)",
       "Bash(python:*)",
       "Bash(curl:*)",
-      "Bash(bun:*)"
+      "Bash(bun:*)",
+      "WebFetch(domain:remoteok.com)",
+      "WebFetch(domain:weworkremotely.com)",
+      "WebSearch"
     ]
   }
 }

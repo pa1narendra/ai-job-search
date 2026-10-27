@@ -10,44 +10,54 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 
 ## Ready-Made STAR Examples
 
-<!-- These are populated by /setup from your actual experience. Below are templates showing the format. -->
+<!-- Drafted by /setup from Pavan's real experience. Refine wording in your own voice before interviews. -->
 
-### 1. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT - what was happening, what was the problem]
-**T:** [YOUR RESPONSIBILITY - what you specifically needed to do]
-**A:** [WHAT YOU DID - specific actions, tools, methods]
-**R:** [OUTCOME - measurable results, adoption, impact]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### 1. Real-time messaging performance (Scaling & optimization)
+**S:** At IVECTORS, the healthcare platform's internal messaging system was slow (2-3s to fetch messages) and only handled around 5,000 messages, which would not scale as clinics grew.
+**T:** I was responsible for building a real-time messaging system from scratch that was both fast and able to scale to high volume.
+**A:** I implemented Redis caching for hot data and added pagination so the client only loaded what it needed; I designed indexed MongoDB schemas tuned for high-volume access patterns and profiled queries to remove bottlenecks.
+**R:** Fetch times dropped from 2-3s to under 500ms, capacity scaled from 5,000 to 1M+ messages, and overall performance improved ~40%.
+**Use for:** "Tell me about a performance problem you solved", "Describe a system you built from scratch", "How do you handle scale?"
 
-### 2. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT]
-**T:** [YOUR RESPONSIBILITY]
-**A:** [WHAT YOU DID]
-**R:** [OUTCOME]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### 2. Multi-tenant architecture (System design & ownership)
+**S:** The patient-management application needed to serve multiple clinics (5 clinics, 200+ users) with strict data separation and different feature needs per organization.
+**T:** I needed to design and build a multi-tenant architecture with proper data isolation and access control.
+**A:** I implemented isolated databases per organization, tenant-specific feature configurations, and role-based access control across roles (doctors, clinicians, billers, front desk), exposed through Node.js REST APIs.
+**R:** The platform safely served 5 clinics and 200+ users across multiple roles with tenant data isolation and per-tenant configurability.
+**Use for:** "Describe a system you designed", "How do you handle data isolation/security?", "Tell me about a complex backend project"
 
-### 3. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT]
-**T:** [YOUR RESPONSIBILITY]
-**A:** [WHAT YOU DID]
-**R:** [OUTCOME]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### 3. Keycloak SSO integration (Learning new tech / integration)
+**S:** At Flying Fox Labs, multiple client applications each handled authentication separately, creating friction and manual role management.
+**T:** I was tasked with enabling single sign-on across these applications.
+**A:** I integrated Keycloak SSO using the OAuth 2.0 authorization-code flow and set up automated role assignments across the client apps.
+**R:** Users gained single sign-on across applications and role assignment became automated, removing manual setup overhead.
+**Use for:** "Tell me about a time you learned a new technology fast", "Describe an integration you owned", "Auth/security experience"
 
-<!-- Add more STAR examples as needed. Aim for 4-6 covering different competencies. -->
+### 4. Multiplayer real-time chess (Initiative / resilience)
+**S:** I wanted to deepen my real-time systems skills, so I built a multiplayer chess platform as a personal project.
+**T:** Build a working real-time multiplayer game with reliable state, even when players disconnect.
+**A:** I used WebSockets for instant move synchronization, enforced rules with server-side move validation, persisted game state in MongoDB, managed active sessions in Redis, and added reconnection logic that recovers game state from the database.
+**R:** A working multiplayer chess platform where concurrent players see instant moves and games survive disconnections.
+**Use for:** "Tell me about a side project", "Show initiative/self-learning", "Real-time / WebSocket experience"
+
+<!-- Add more STAR examples as your experience grows. Aim for 4-6 covering different competencies. -->
 
 ## Common Tough Questions
 
-### "Why did you leave [previous company]?"
-> [PREPARE YOUR ANSWER - be honest, forward-looking, no negativity about former employer]
+### "Why are you looking to leave / switch?"
+> I've been working at startups, where I've learned a lot by owning real-time and multi-tenant systems end-to-end. But I've repeatedly hit the same wall: an app that's the fastest thing on the internet at 100 users starts slowing around 500, and under a 20,000-user load test it crawls until we apply a round of optimizations we'd been missing. We get it healthy again, but it's reactive. I want to work somewhere that operates products at 1M+ users so I can learn how systems are designed and run at that scale from the start, rather than firefighting it later. *(This is your real motivation — keep it; it's honest and forward-looking with no negativity.)*
 
-### "You don't have [specific skill/experience]."
-> [PREPARE YOUR ANSWER - acknowledge the gap, bridge to adjacent experience, show willingness to learn]
+### "You don't have experience with [specific skill, e.g. Kubernetes / large-scale distributed systems]."
+> I acknowledge I haven't operated at that exact scale yet — that's actually a big part of why I want this role. But I've done the adjacent work the hard way: I scaled a messaging system from 5K to 1M+ messages and cut latency from 2-3s to under 500ms with Redis and indexed MongoDB, and I've run load tests that exposed bottlenecks at 20K users and fixed them. I pick up new tooling fast, as I did with Keycloak/OAuth and Helm. *(Bridge to the closest real experience for the specific gap.)*
 
 ### "Where do you see yourself in 5 years?"
-> [PREPARE YOUR ANSWER - show ambition aligned with the role's growth path]
+> Growing into a senior engineer who designs performance-critical systems for large-scale products from the ground up — and mentoring others as I go. *(Align with the specific role's growth path.)*
 
 ### "What's your biggest weakness?"
-> [PREPARE YOUR ANSWER - genuine weakness with concrete mitigation strategy]
+> So far I've worked mostly at small-to-mid scale, so large distributed-systems design is something I'm still building depth in. I've been deliberate about it — I dig into how high-scale systems are built, and I push to load-test and optimize proactively rather than waiting for things to break — but operating at 1M+ users is exactly the experience I'm seeking next. *(Genuine, with mitigation, and ties back to your motivation.)*
+
+### "What's your notice period?"
+> 15 days.
 
 ### "Why this company specifically?"
 > Customize per company. Must reference: specific projects, company values, market position, or team structure. Never give a generic answer.

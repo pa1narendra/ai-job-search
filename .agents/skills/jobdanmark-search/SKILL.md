@@ -2,20 +2,10 @@
 name: jobdanmark-search
 version: 1.0.0
 description: >
-  Make sure to use this skill whenever the user mentions anything related to Danish
-  job listings, job search in Denmark, finding work in Denmark, or job vacancies on
-  Jobdanmark — even if they don't explicitly mention jobdanmark.dk. Also invoke this
-  skill for questions about specific Danish job categories, municipalities, job types,
-  or salaries in a job-search context. Trigger phrases include:
-  danish jobs, jobs in denmark, find job denmark, job search denmark, danish job listings,
-  jobdanmark, job opslag, find job, jobsøgning, ledige stillinger, stillingsopslag,
-  job i Danmark, fuldtidsjob, deltidsjob, studiejob, praktikplads, elev, fleksjob,
-  IT job denmark, sygeplejersker job, håndværker job, ingeniør job, pædagog job,
-  kontor job, leder job, salg job, hotel job, kirke job, job aarhus, job københavn,
-  job odense, job aalborg, job sjælland, job jylland, job fyn, jobkategorier denmark,
-  ledige job, ansøgningsfrist, søg job, job opslaget, jobopslag, danish vacancies,
-  work in denmark, employment denmark, job denmark, jobs near me denmark,
-  apprentice denmark, internship denmark, part-time denmark, full-time denmark.
+  [INACTIVE - RETAINED AS REFERENCE] Denmark-only CLI scraper for Jobdanmark.dk. This
+  workspace is configured for the INDIAN job market, so do NOT auto-trigger this skill.
+  It is kept only as a reference implementation for building India job-portal CLI tools.
+  Only use it if the user explicitly asks to search Danish jobs on Jobdanmark.dk by name.
 context: fork
 allowed-tools: Bash(bun run skills/jobdanmark-search/cli/src/cli.ts *)
 ---

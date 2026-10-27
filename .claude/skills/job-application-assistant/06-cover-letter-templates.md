@@ -147,7 +147,7 @@ The font wrapper is mandatory — if you just move `\begin{itemize}` outside `\l
 ### Non-English Cover Letters
 - Same template structure, just write content in the posting's language
 - Adjust date format to local convention
-- Adjust closing to local convention (e.g. "Med venlig hilsen," for Danish)
+- Adjust closing to local convention (Indian postings are typically English; use "Sincerely," or "Yours sincerely,". Use a regional-language closing only if the posting itself is in that language)
 
 ## Checklist Before Finalizing
 - [ ] No em-dashes (use commas or periods instead)

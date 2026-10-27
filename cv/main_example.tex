@@ -1,20 +1,16 @@
-%% Example CV - [YOUR_NAME]
-%% Comprehensive overview of all competencies, experience, and achievements.
-%% Use as a master reference when tailoring role-specific CVs.
-%%
-%% SETUP: Run /setup to populate this with your actual information.
+%% Master CV - Pavan Narendra Peela
+%% Single-page. Use as the master reference when tailoring role-specific CVs.
 %% Compile with: lualatex main_example.tex
 %% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
 
-\documentclass[11pt,a4paper,sans]{moderncv}
+\documentclass[10pt,a4paper,sans]{moderncv}
 \moderncvstyle{banking}
 \moderncvcolor{blue}
 
-% Force both first and last name AND section headings to render in moderncv
-% blue (color1). Default banking on lualatex+MiKTeX leaves these black, which
-% looks inconsistent with the rest of the blue accent scheme.
-\renewcommand*{\firstnamestyle}[1]{{\fontsize{34}{36}\bfseries\upshape\color{color1}#1}}
-\renewcommand*{\lastnamestyle}[1]{{\fontsize{34}{36}\bfseries\upshape\color{color1}#1}}
+% Render name and section headings in the accent color (banking on
+% lualatex+MiKTeX otherwise leaves them black).
+\renewcommand*{\firstnamestyle}[1]{{\fontsize{28}{30}\bfseries\upshape\color{color1}#1}}
+\renewcommand*{\lastnamestyle}[1]{{\fontsize{28}{30}\bfseries\upshape\color{color1}#1}}
 \renewcommand*{\sectionstyle}[1]{{\sectionfont\color{color1}#1}}
 
 \usepackage[utf8]{inputenc}
@@ -24,146 +20,75 @@
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
-    pdfpagemode=FullScreen,
+    pdftitle={Pavan Narendra Peela - CV},
 }
-\usepackage[scale=0.80]{geometry}
-\usepackage{import}
+\usepackage[scale=0.86]{geometry}
 
 % personal data
-\name{[First]}{[Last]}
-\address{[Your Address, City, Country]}{}{}
-\phone[mobile]{[+XX XXXXXXXXXX]}
-\email{[your.email@example.com]}
-\extrainfo{\href{[https://linkedin.com/in/your-profile]}{LinkedIn}, \href{[https://github.com/your-username]}{GitHub}}
+\name{Pavan Narendra}{Peela}
+\address{Hyderabad, India}{}{}
+\phone[mobile]{+91-9381974822}
+\email{pavannarendra2002@gmail.com}
+\extrainfo{\href{https://www.linkedin.com/in/pavan-narendra/}{LinkedIn}, \href{https://github.com/pa1narendra/}{GitHub}}
 
 \begin{document}
 
 \makecvtitle
+\vspace{-14pt}
 
-% ============================================================
-%     PROFILE STATEMENT
-% ============================================================
+\small{Full Stack Developer with 2+ years building production web applications in React, Next.js, and Node.js. Built a real-time messaging system handling 1M+ messages at sub-500ms, on a healthcare platform serving \textasciitilde 20 clinics and 200+ daily users. Experienced in multi-tenant architecture, SOC 2 and HIPAA compliance work, and AWS.}
 
-\vspace{6pt}
-\small{[Write a 3-5 line profile statement tailored to the role you're applying for. Focus on what makes you uniquely qualified. Example: "Data scientist with a PhD in [field] and X years of industry experience. Combines deep domain expertise in [domain] with strong applied machine learning and Python development skills. Experienced in developing end-to-end ML pipelines, from data ingestion to stakeholder-facing dashboards."]}
-
-% ============================================================
-%     CORE COMPETENCIES
-% ============================================================
-
-\section{Core Competencies}
+\section{Skills}
 \vspace{1pt}
 \begin{itemize}
-
-\item \textbf{[Skill Category 1]}: [Specific skills, frameworks, tools. Be concrete.]
-
-\item \textbf{[Skill Category 2]}: [Specific skills, frameworks, tools.]
-
-\item \textbf{[Skill Category 3]}: [Specific skills, frameworks, tools.]
-
-\item \textbf{[Skill Category 4]}: [Domain expertise, methods, approaches.]
-
-\item \textbf{[Skill Category 5]}: [Tools, platforms, software.]
-
+\item \textbf{Core}: JavaScript, TypeScript, React, Next.js, Node.js, REST APIs, WebSockets, MongoDB, Redis
+\item \textbf{Tooling}: AWS (EC2, S3, Cognito, Route 53), Docker, CI/CD (GitHub Actions), Keycloak/OAuth 2.0, Jest, Playwright
+\item \textbf{Security \& Compliance}: SOC 2 and HIPAA readiness --- controls, audit evidence, security policies
 \end{itemize}
-
-% ============================================================
-%     PROFESSIONAL EXPERIENCE
-% ============================================================
 
 \section{Professional Experience}
-\vspace{3pt}
+\vspace{2pt}
 \begin{itemize}
 
-% --- Most Recent Role ---
-\item{\cventry{[YYYY--Present]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\item{\cventry{2025--Present}{Software Engineer}{IVECTORS}{Hyderabad, India}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1 - be specific, use numbers where possible]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
-    \item [Achievement or responsibility 4]
+    \item Core engineer on a multi-tenant healthcare EMR platform: \textasciitilde 20 clinics across Illinois and Michigan, 200+ daily users, \textasciitilde 10,000 patient records, isolated databases per organization with RBAC.
+    \item Built the real-time internal messaging system from scratch (WebSockets, Redis); caching and pagination cut fetch times from 2--3s to under 500ms, with a 1M+ message capacity test passed.
+    \item Built the platform's schema-driven form builder in React/TypeScript: drag-and-drop clinical form design rendered dynamically per tenant.
+    \item Driving SOC 2 and HIPAA readiness --- implementing controls, gathering audit evidence, point of contact for auditors and clients; own AWS infrastructure across Cognito, S3, EC2, and Route 53.
 \end{itemize}}}
 
-\vspace{3pt}
-
-% --- Previous Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\vspace{2pt}
+\item{\cventry{2024--2025}{Software Engineer}{Flying Fox Labs}{Hyderabad, India}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
-\end{itemize}}}
-
-\vspace{3pt}
-
-% --- Earlier Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
-\begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
+    \item Integrated Keycloak SSO with OAuth 2.0 authorization-code flow across multiple client applications.
+    \item Deployed and managed Helm charts and CI/CD pipelines (build, lint, deploy) across dev, staging, and production.
 \end{itemize}}}
 
 \end{itemize}
 
-% ============================================================
-%     EDUCATION
-% ============================================================
-
-\section{Education}
+\section{Projects}
 \vspace{1pt}
 \begin{itemize}
 
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-Thesis: ``[Thesis Title].'' [Brief description of research focus.]
-}}
+\item{\cventry{2026}{Next.js, Gemini Live, Postgres}{Mockstar --- AI voice mock interviewer (live)}{}{}{\vspace{1pt}
+Real-time spoken interviews with adaptive follow-ups and scored reports. Browser streams audio to Gemini Live via single-use server-minted tokens; save-first pipeline keeps answers safe if scoring fails. \href{https://mockstar-ai.vercel.app}{mockstar-ai.vercel.app}}}
 
-\vspace{3pt}
+\vspace{2pt}
+\item{\cventry{2026}{Flutter, SQLite, GitHub Actions}{MoneyCap --- offline-first expense tracker (released)}{}{}{\vspace{1pt}
+Parses bank SMS into a ledger entirely on-device; no financial data leaves the phone. Signed APK shipped through a GitHub Actions CI pipeline. \href{https://github.com/pa1narendra/MoneyCap}{GitHub}}}
 
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-[Brief description or key topics.]
-}}
+\vspace{2pt}
+\item{\cventry{2024--2026}{Flutter, Bun, MongoDB, WebSockets}{Chessing --- server-authoritative multiplayer chess}{}{}{\vspace{1pt}
+The server re-validates every move; clocks keep running through a 60-second reconnect grace window so disconnecting is never a free exit. Glicko-2 ratings, offline minimax bots. \href{https://github.com/pa1narendra/chess-mobile}{GitHub}}}
 
 \end{itemize}
 
-% ============================================================
-%     LANGUAGES
-% ============================================================
-
-\section{Languages}
+\section{Education \& Interests}
 \vspace{1pt}
 \begin{itemize}
-\item [Language 1] (native), [Language 2] (fluent), [Language 3] (intermediate).
-\end{itemize}
-
-% ============================================================
-%     PUBLICATIONS (optional)
-% ============================================================
-
-\section{Publications}
-\vspace{1pt}
-\begin{itemize}
-\item [Author(s)] ([Year]). [Title]. [Journal/Conference]. \href{[DOI_URL]}{DOI link}
-\end{itemize}
-
-% ============================================================
-%     HONORS AND AWARDS (optional)
-% ============================================================
-
-\section{Honors and Awards}
-\vspace{1pt}
-\begin{itemize}
-\item{\textbf{[Award Name]} -- [Event/Organization] ([Year]).}
-\end{itemize}
-
-% ============================================================
-%     REFERENCES
-% ============================================================
-
-\section{References}
-\vspace{1pt}
-\begin{itemize}
-\item{Available upon request.}
+\item \textbf{B.Tech, Computer Science and Engineering} (2020--2024) --- KKR \& KSR Institute of Technology and Sciences. CGPA 7.57.
+\item \textbf{Chess}: 1705 rapid on \href{https://www.chess.com/member/pa1narendra}{chess.com} (peak 1782, 7,500+ games) --- the reason Chessing exists.
 \end{itemize}
 
 \end{document}

@@ -1,14 +1,23 @@
 # Job Scraper
 
 **name:** job-scraper
-**description:** Scrapes Danish job sites for new positions matching your profile. Deduplicates across runs. Triggers on: job scrape, find jobs, search jobs, new jobs, job search, scrape jobs, /scrape
+**description:** Scrapes Indian job sites for new positions matching your profile. Deduplicates across runs. Triggers on: job scrape, find jobs, search jobs, new jobs, job search, scrape jobs, /scrape
 **allowed-tools:** Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Agent, AskUserQuestion
 
 ---
 
 ## How It Works
 
-This skill searches multiple Danish job sites using targeted queries based on your profile, deduplicates against previously seen jobs and the application tracker, and presents new matches with a quick fit assessment.
+This skill's **default** is **remote-global** roles open to India. It fetches remote-first job
+boards that expose open APIs/RSS (RemoteOK, Remotive, We Work Remotely, Himalayas, HN "Who is
+Hiring") — these return full job data with no anti-bot blocking, so matches can be auto-read
+end-to-end. It deduplicates against previously seen jobs and the application tracker, applies the
+critical **India-eligibility filter** (skip US-only/EU-only/region-locked roles), and presents
+new matches with a quick fit assessment.
+
+Indian portals (Naukri, LinkedIn, Wellfound, Instahyre) are a **secondary** net run on
+`/scrape india` — discovery works via WebSearch, but their full JDs are fetch-blocked, so the
+user pastes the JD for any role they want to deep-dive. See `search-queries.md` for full strategy.
 
 ## Invocation
 
@@ -34,14 +43,19 @@ Optional arguments:
 
 ### Step 1: Search
 
-Run **WebSearch** queries from `search-queries.md`. By default, run the top 3 priority categories. If the user said "broad", run all categories.
+Read `search-queries.md` for the full strategy. **Default = Section A (remote-global).** Run
+Section B (Indian portals) only on `/scrape india`, or both on `/scrape broad`.
 
-If the user specified a focus area (e.g. "data science"), prioritize queries from that category.
+**Section A (default) — remote APIs via `WebFetch`:**
+- `WebFetch` the endpoints in `search-queries.md` Section A (RemoteOK, Remotive, We Work Remotely RSS, Himalayas, HN Who-is-Hiring). They return full JSON/RSS — no blocking.
+- In each fetch prompt, ask for roles matching the stack (JS/TS/React/Next/Node/Mongo/Redis), and have it report the candidate-location eligibility per role.
+- Apply the **India-eligibility filter**: keep ✅ ELIGIBLE (Anywhere/Worldwide/India/Asia) and ⚠️ CHECK; drop ❌ SKIP (US-only/EU-only/region-locked).
 
-For each search:
-- Use `WebSearch` with site-specific queries (jobindex.dk, linkedin.com/jobs, karriere.dk, etc.)
-- Target your configured geographic area
-- Look for postings from the last 14 days
+**Section B (`/scrape india`) — Indian portals via `WebSearch`:**
+- Use `WebSearch` with the site-specific queries (naukri.com, linkedin.com/jobs, wellfound.com, instahyre.com).
+- Full JDs are fetch-blocked on these — present discovery results and note the user must paste the JD to deep-dive.
+
+**Default: keep only postings from the last 7 days** (freshness drives conversion — sort newest-first and lead with the freshest). Widen only on request (`/scrape 14d`, `/scrape 30d`).
 
 ### Step 2: Fetch & Parse
 

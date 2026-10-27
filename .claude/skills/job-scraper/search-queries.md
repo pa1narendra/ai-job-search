@@ -1,76 +1,98 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
+<!-- Primary target: REMOTE-GLOBAL roles open to India. Secondary: Indian portals. -->
+<!-- Configured for Pavan Narendra Peela: Full Stack / Backend / Frontend SWE -->
+<!-- (React, Next.js, Node.js, TypeScript, MongoDB, Redis), ~2 yrs. -->
 
-## Search Sites
+## Strategy
 
-Primary (Danish job market):
-- **jobindex.dk** - largest Danish job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: Denmark / your city)
-- **karriere.dk** - IDA's job board (engineering/science roles)
-- **jobfinder.dk** - another major Danish job board
-- **akademikernes.dk** - academic union job board
+Pavan's priority is **remote roles that hire globally / from India, pay well, and work in English.**
+Run **Section A (remote-global) first and by default.** Run Section B (Indian portals) only on
+request (e.g. `/scrape india`) or as a secondary net.
 
-Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+**Why remote-first:** the remote-first boards expose OPEN APIs / RSS feeds that return full job
+data with no anti-bot blocking — unlike Naukri/LinkedIn/Wellfound, which block automated fetch.
+So remote roles can be auto-read end-to-end (fit score + tailored CV/cover letter) with no pasting.
 
-## Query Categories
+---
 
-Queries are grouped by priority. Each query should be combined with your location terms (e.g. "Copenhagen", "Sjælland", "Hovedstaden") where the site supports it.
+## Section A: Remote-Global Sources (PRIMARY — fetchable, no blocking)
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
+Fetch these directly with `WebFetch`. They return JSON/RSS with full descriptions.
 
-These match your strongest and most desired career direction.
+| Source | Endpoint | Notes |
+|--------|----------|-------|
+| **RemoteOK** | `https://remoteok.com/api` | JSON. Sorted by date (noisy). Filter by tags + location. Also `https://remoteok.com/api?tags=react,node` |
+| **Remotive** | `https://remotive.com/api/remote-jobs?category=software-dev` | JSON. `category=software-dev` is the clean filter. (Its `search=` param is unreliable — filter in the prompt instead.) |
+| **We Work Remotely** | `https://weworkremotely.com/categories/remote-full-stack-programming-jobs.rss` | RSS. Also `remote-back-end-programming-jobs.rss`, `remote-front-end-programming-jobs.rss`. Cleanest "Anywhere in the World" tagging. |
+| **Himalayas** | `https://himalayas.app/jobs/api` | JSON. Best region/timezone metadata; try larger `?limit=` and paginate. |
+| **HN "Who is Hiring"** | `http://hn.algolia.com/api/v1/search_by_date?query=remote%20react%20node&tags=comment` | Monthly thread; open Algolia API; direct-to-company, often async-friendly. |
+
+### The CRITICAL filter: India eligibility
+
+Most "remote" roles are region-locked. For every role, classify candidate location into:
+- ✅ **ELIGIBLE** — "Anywhere in the World", "Worldwide", "Global", "Remote - India", "Asia", or explicitly lists India
+- ⚠️ **CHECK** — vague "Remote" with a US/EU company (verify by fetching the full JD before recommending)
+- ❌ **SKIP** — "US only", "US-authorized", "EU only", "LATAM only", "must be in <country>" (no India)
+
+**Only present ELIGIBLE and CHECK roles. Never present SKIP roles as matches.**
+
+### Stack + level filter
+
+- **Match stack:** JavaScript, TypeScript, React, Next.js, Node.js, NestJS, Express, MongoDB, Redis, PostgreSQL
+- **Level:** target roles for ~1-4 years / "Software Engineer", "Mid-level", "II", "Full Stack Engineer". Flag (don't auto-skip) "Senior"/"Lead"/"Staff"/"III"/"7+ yrs" as stretch.
+- **English:** all roles must be English-working. Skip roles requiring another working language.
+
+### Vetting marketplaces (track separately — apply once, get matched)
+
+Not scraped per-search. These place Indian devs into US/EU-remote contracts. See `marketplace_profile.md`.
+- **Lemon.io**, **Arc.dev**, **Turing**, **Braintrust**, **Gun.io** (primary for ~2 yrs)
+- **Toptal** (stretch — very selective, wants 3+ yrs)
+
+---
+
+## Section B: Indian Portals (SECONDARY — run on `/scrape india`)
+
+Search via `WebSearch` (discovery works; full JD fetch is BLOCKED on these — user pastes JD for deep-dive).
+
+- **naukri.com**, **linkedin.com/jobs**, **wellfound.com**, **instahyre.com**
+
+### Queries
 
 ```
-site:jobindex.dk "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_CITY]
-site:jobindex.dk "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_COUNTRY]
+site:naukri.com "full stack developer" (React OR Next.js) Node.js Hyderabad
+site:linkedin.com/jobs "software engineer" "React" "Node.js" India remote
+site:wellfound.com "full stack" OR "node.js" engineer India remote
+site:naukri.com "node.js developer" (MongoDB OR Redis) Hyderabad OR Bengaluru OR Pune
 ```
 
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
+### Locations (for Indian roles)
+- **Primary:** Hyderabad; **also:** Bengaluru, Pune, Chennai, Delhi NCR, Mumbai; **plus:** remote (India)
 
-These match your domain expertise.
+---
 
-```
-site:jobindex.dk [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:jobindex.dk [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
-```
+## Filters & Deal-breakers (apply to ALL sources)
 
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
+- Salary target **9-15 LPA** (Indian roles) / for remote-global, aim well above via USD pay; flag clearly-low comp.
+- **Skip** roles centered on 24x7 on-call / production-support.
+- **Skip** primarily non-JS legacy stacks (.NET-only, PHP-only, legacy-Java-only with no React/Node).
+- Only open postings; skip expired deadlines.
 
-Adjacent roles you could pivot into.
+## Date Filter (DEFAULT: last 7 days — freshness drives conversion)
 
-```
-site:jobindex.dk "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:jobindex.dk "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
-```
+**Default: only present postings from the last 7 days.** Fresh postings convert far better — you
+apply before the role is flooded. Apply this strictly:
 
-### Priority 4: Broader Technical / Consulting
-
-Wider net for general technical roles.
-
-```
-site:jobindex.dk [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:jobindex.dk "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
-```
-
-## Location Filter
-
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
-
-## Date Filter
-
-Only include jobs posted within the last 14 days, or with an application deadline that has not yet passed. If a posting date cannot be determined, include it but flag as "date unknown".
+- The remote APIs carry a publication date: RemoteOK `epoch`/`date`, Remotive `publication_date`,
+  We Work Remotely RSS `pubDate`, Himalayas `pubDate`/`publishedAt`. **Filter on these; keep only
+  roles posted within the last 7 days.** Sort newest-first and lead with the freshest.
+- If a date genuinely can't be determined, include it but flag "date unknown" and rank it below dated roles.
+- Widen only on request: `/scrape 14d`, `/scrape 30d`, "last two weeks", "last month". Plain
+  `/scrape` = last 7 days.
 
 ## Adapting Queries
 
-If the user specifies a focus area, select queries from the matching category and also generate 2-3 custom queries for that focus. For example:
-- "/scrape [focus_area]" -> relevant category queries + custom focus-specific queries
+- `/scrape` or `/scrape remote` → Section A (default)
+- `/scrape india` → Section B
+- `/scrape backend` → bias toward Node.js/MongoDB/Redis/API roles in whichever section
+- `/scrape broad` → run both sections
